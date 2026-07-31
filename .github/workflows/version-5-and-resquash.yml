@@ -1,8 +1,9 @@
 name: Version 5 and resquash
 
 on:
-  pull_request:
-    branches: [master]
+  push:
+    branches:
+      - agent/strict-typescript-refactor
 
 permissions:
   contents: write
