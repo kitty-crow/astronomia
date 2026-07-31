@@ -1,6 +1,6 @@
 {
   "name": "astronomia",
-  "version": "4.2.0",
+  "version": "5.0.0",
   "description": "Strongly typed astronomical algorithms and ephemerides",
   "keywords": [
     "astronomy",
