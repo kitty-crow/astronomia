@@ -1,14 +1,11 @@
 node_modules/
+dist/
 coverage/
 output/
 attic/
 tmp/
-lib/
-es/
 *.log
 *.tgz
-.eslintcache
-.nyc_output
 .DS_Store
 
 package-lock.json
