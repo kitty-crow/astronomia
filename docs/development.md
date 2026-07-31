@@ -35,6 +35,16 @@ The compiler enables strict mode plus:
 
 Avoid `any`, suppression directives and unchecked tuple/index access. Add a named interface, discriminated union, overload or validation boundary instead.
 
+## Versioning
+
+Astronomia follows semantic versioning. Every meaningful project landmark updates `package.json` in the same change:
+
+- **patch** for backwards-compatible fixes, documentation corrections and internal maintenance
+- **minor** for backwards-compatible public functionality, modules, exports or substantial capabilities
+- **major** for breaking API, runtime, package-format or behavioural changes
+
+Versions are cumulative and incremental. Do not reuse a released version or move backwards. Release commits, tags and published packages must carry the same version.
+
 ## Commands
 
 ```bash
