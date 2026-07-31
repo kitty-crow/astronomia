@@ -1,27 +1,21 @@
-all: build
+all: check build test
 
-test: v12. v14. v15.
+check:
+	npm run lint
 
-v%:
-	n $@ \
-	&& npm test
+build:
+	npm run build
 
-deltat:
-	./scripts/download.sh -t
+test:
+	npm test
 
-pack:
-	rm astronomia*.tgz
-	npm pack
-	tar tvzf astronomia*.tgz
-
-build: clean lib/
-
-lib/: src/*.js
-	npm run lint \
-	&& npm run build \
-	&& npm run test
+slow-test:
+	npm run test:slow
 
 clean:
 	npm run clean
 
-.PHONY: all deltat
+pack:
+	npm pack
+
+.PHONY: all check build test slow-test clean pack

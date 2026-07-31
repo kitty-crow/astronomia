@@ -1,4 +1,6 @@
 {
   "checkLeaks": true,
-  "reporter": "dot"
+  "reporter": "dot",
+  "extension": ["ts"],
+  "spec": ["test/**/*.test.ts"]
 }

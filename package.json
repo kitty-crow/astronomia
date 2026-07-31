@@ -1,20 +1,25 @@
 {
   "name": "astronomia",
   "version": "4.2.0",
-  "description": "An astronomical library",
+  "description": "Strongly typed astronomical algorithms and ephemerides",
   "keywords": [
     "astronomy",
     "julian",
     "meeus",
-    "planetposition"
+    "planetposition",
+    "typescript",
+    "ephemeris",
+    "vsop87",
+    "moon",
+    "solar-system"
   ],
-  "homepage": "https://github.com/commenthol/astronomia",
+  "homepage": "https://github.com/kitty-crow/astronomia",
   "bugs": {
-    "url": "https://github.com/commenthol/astronomia/issues"
+    "url": "https://github.com/kitty-crow/astronomia/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/commenthol/astronomia.git"
+    "url": "git+https://github.com/kitty-crow/astronomia.git"
   },
   "license": "MIT",
   "author": "commenthol <commenthol@gmail.com>",
@@ -27,375 +32,445 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": "./src/index.js",
-      "require": "./lib/index.cjs"
+      "types": "./dist/esm/src/index.d.ts",
+      "import": "./dist/esm/src/index.js",
+      "require": "./dist/cjs/src/index.js"
     },
     "./angle": {
-      "import": "./src/angle.js",
-      "require": "./lib/angle.cjs"
+      "types": "./dist/esm/src/angle.d.ts",
+      "import": "./dist/esm/src/angle.js",
+      "require": "./dist/cjs/src/angle.js"
     },
     "./apparent": {
-      "import": "./src/apparent.js",
-      "require": "./lib/apparent.cjs"
+      "types": "./dist/esm/src/apparent.d.ts",
+      "import": "./dist/esm/src/apparent.js",
+      "require": "./dist/cjs/src/apparent.js"
     },
     "./apsis": {
-      "import": "./src/apsis.js",
-      "require": "./lib/apsis.cjs"
+      "types": "./dist/esm/src/apsis.d.ts",
+      "import": "./dist/esm/src/apsis.js",
+      "require": "./dist/cjs/src/apsis.js"
     },
     "./base": {
-      "import": "./src/base.js",
-      "require": "./lib/base.cjs"
+      "types": "./dist/esm/src/base.d.ts",
+      "import": "./dist/esm/src/base.js",
+      "require": "./dist/cjs/src/base.js"
     },
     "./binary": {
-      "import": "./src/binary.js",
-      "require": "./lib/binary.cjs"
+      "types": "./dist/esm/src/binary.d.ts",
+      "import": "./dist/esm/src/binary.js",
+      "require": "./dist/cjs/src/binary.js"
     },
     "./circle": {
-      "import": "./src/circle.js",
-      "require": "./lib/circle.cjs"
+      "types": "./dist/esm/src/circle.d.ts",
+      "import": "./dist/esm/src/circle.js",
+      "require": "./dist/cjs/src/circle.js"
     },
     "./conjunction": {
-      "import": "./src/conjunction.js",
-      "require": "./lib/conjunction.cjs"
+      "types": "./dist/esm/src/conjunction.d.ts",
+      "import": "./dist/esm/src/conjunction.js",
+      "require": "./dist/cjs/src/conjunction.js"
     },
     "./coord": {
-      "import": "./src/coord.js",
-      "require": "./lib/coord.cjs"
+      "types": "./dist/esm/src/coord.d.ts",
+      "import": "./dist/esm/src/coord.js",
+      "require": "./dist/cjs/src/coord.js"
     },
     "./deltat": {
-      "import": "./src/deltat.js",
-      "require": "./lib/deltat.cjs"
+      "types": "./dist/esm/src/deltat.d.ts",
+      "import": "./dist/esm/src/deltat.js",
+      "require": "./dist/cjs/src/deltat.js"
     },
     "./eclipse": {
-      "import": "./src/eclipse.js",
-      "require": "./lib/eclipse.cjs"
+      "types": "./dist/esm/src/eclipse.d.ts",
+      "import": "./dist/esm/src/eclipse.js",
+      "require": "./dist/cjs/src/eclipse.js"
     },
     "./elementequinox": {
-      "import": "./src/elementequinox.js",
-      "require": "./lib/elementequinox.cjs"
+      "types": "./dist/esm/src/elementequinox.d.ts",
+      "import": "./dist/esm/src/elementequinox.js",
+      "require": "./dist/cjs/src/elementequinox.js"
     },
     "./elliptic": {
-      "import": "./src/elliptic.js",
-      "require": "./lib/elliptic.cjs"
+      "types": "./dist/esm/src/elliptic.d.ts",
+      "import": "./dist/esm/src/elliptic.js",
+      "require": "./dist/cjs/src/elliptic.js"
     },
     "./elp": {
-      "import": "./src/elp.js",
-      "require": "./lib/elp.cjs"
+      "types": "./dist/esm/src/elp.d.ts",
+      "import": "./dist/esm/src/elp.js",
+      "require": "./dist/cjs/src/elp.js"
     },
     "./eqtime": {
-      "import": "./src/eqtime.js",
-      "require": "./lib/eqtime.cjs"
+      "types": "./dist/esm/src/eqtime.d.ts",
+      "import": "./dist/esm/src/eqtime.js",
+      "require": "./dist/cjs/src/eqtime.js"
     },
     "./fit": {
-      "import": "./src/fit.js",
-      "require": "./lib/fit.cjs"
+      "types": "./dist/esm/src/fit.d.ts",
+      "import": "./dist/esm/src/fit.js",
+      "require": "./dist/cjs/src/fit.js"
     },
     "./globe": {
-      "import": "./src/globe.js",
-      "require": "./lib/globe.cjs"
+      "types": "./dist/esm/src/globe.d.ts",
+      "import": "./dist/esm/src/globe.js",
+      "require": "./dist/cjs/src/globe.js"
     },
     "./illum": {
-      "import": "./src/illum.js",
-      "require": "./lib/illum.cjs"
+      "types": "./dist/esm/src/illum.d.ts",
+      "import": "./dist/esm/src/illum.js",
+      "require": "./dist/cjs/src/illum.js"
     },
     "./interpolation": {
-      "import": "./src/interpolation.js",
-      "require": "./lib/interpolation.cjs"
+      "types": "./dist/esm/src/interpolation.d.ts",
+      "import": "./dist/esm/src/interpolation.js",
+      "require": "./dist/cjs/src/interpolation.js"
     },
     "./iterate": {
-      "import": "./src/iterate.js",
-      "require": "./lib/iterate.cjs"
+      "types": "./dist/esm/src/iterate.d.ts",
+      "import": "./dist/esm/src/iterate.js",
+      "require": "./dist/cjs/src/iterate.js"
     },
     "./jm": {
-      "import": "./src/jm.js",
-      "require": "./lib/jm.cjs"
+      "types": "./dist/esm/src/jm.d.ts",
+      "import": "./dist/esm/src/jm.js",
+      "require": "./dist/cjs/src/jm.js"
     },
     "./julian": {
-      "import": "./src/julian.js",
-      "require": "./lib/julian.cjs"
+      "types": "./dist/esm/src/julian.d.ts",
+      "import": "./dist/esm/src/julian.js",
+      "require": "./dist/cjs/src/julian.js"
     },
     "./jupiter": {
-      "import": "./src/jupiter.js",
-      "require": "./lib/jupiter.cjs"
+      "types": "./dist/esm/src/jupiter.d.ts",
+      "import": "./dist/esm/src/jupiter.js",
+      "require": "./dist/cjs/src/jupiter.js"
     },
     "./jupitermoons": {
-      "import": "./src/jupitermoons.js",
-      "require": "./lib/jupitermoons.cjs"
+      "types": "./dist/esm/src/jupitermoons.d.ts",
+      "import": "./dist/esm/src/jupitermoons.js",
+      "require": "./dist/cjs/src/jupitermoons.js"
     },
     "./kepler": {
-      "import": "./src/kepler.js",
-      "require": "./lib/kepler.cjs"
+      "types": "./dist/esm/src/kepler.d.ts",
+      "import": "./dist/esm/src/kepler.js",
+      "require": "./dist/cjs/src/kepler.js"
     },
     "./line": {
-      "import": "./src/line.js",
-      "require": "./lib/line.cjs"
+      "types": "./dist/esm/src/line.d.ts",
+      "import": "./dist/esm/src/line.js",
+      "require": "./dist/cjs/src/line.js"
     },
     "./mars": {
-      "import": "./src/mars.js",
-      "require": "./lib/mars.cjs"
+      "types": "./dist/esm/src/mars.d.ts",
+      "import": "./dist/esm/src/mars.js",
+      "require": "./dist/cjs/src/mars.js"
     },
     "./moonillum": {
-      "import": "./src/moonillum.js",
-      "require": "./lib/moonillum.cjs"
+      "types": "./dist/esm/src/moonillum.d.ts",
+      "import": "./dist/esm/src/moonillum.js",
+      "require": "./dist/cjs/src/moonillum.js"
     },
     "./moon": {
-      "import": "./src/moon.js",
-      "require": "./lib/moon.cjs"
+      "types": "./dist/esm/src/moon.d.ts",
+      "import": "./dist/esm/src/moon.js",
+      "require": "./dist/cjs/src/moon.js"
     },
     "./moonmaxdec": {
-      "import": "./src/moonmaxdec.js",
-      "require": "./lib/moonmaxdec.cjs"
+      "types": "./dist/esm/src/moonmaxdec.d.ts",
+      "import": "./dist/esm/src/moonmaxdec.js",
+      "require": "./dist/cjs/src/moonmaxdec.js"
     },
     "./moonnode": {
-      "import": "./src/moonnode.js",
-      "require": "./lib/moonnode.cjs"
+      "types": "./dist/esm/src/moonnode.d.ts",
+      "import": "./dist/esm/src/moonnode.js",
+      "require": "./dist/cjs/src/moonnode.js"
     },
     "./moonphase": {
-      "import": "./src/moonphase.js",
-      "require": "./lib/moonphase.cjs"
+      "types": "./dist/esm/src/moonphase.d.ts",
+      "import": "./dist/esm/src/moonphase.js",
+      "require": "./dist/cjs/src/moonphase.js"
     },
     "./moonposition": {
-      "import": "./src/moonposition.js",
-      "require": "./lib/moonposition.cjs"
+      "types": "./dist/esm/src/moonposition.d.ts",
+      "import": "./dist/esm/src/moonposition.js",
+      "require": "./dist/cjs/src/moonposition.js"
     },
     "./nearparabolic": {
-      "import": "./src/nearparabolic.js",
-      "require": "./lib/nearparabolic.cjs"
+      "types": "./dist/esm/src/nearparabolic.d.ts",
+      "import": "./dist/esm/src/nearparabolic.js",
+      "require": "./dist/cjs/src/nearparabolic.js"
     },
     "./node": {
-      "import": "./src/node.js",
-      "require": "./lib/node.cjs"
+      "types": "./dist/esm/src/node.d.ts",
+      "import": "./dist/esm/src/node.js",
+      "require": "./dist/cjs/src/node.js"
     },
     "./nutation": {
-      "import": "./src/nutation.js",
-      "require": "./lib/nutation.cjs"
+      "types": "./dist/esm/src/nutation.d.ts",
+      "import": "./dist/esm/src/nutation.js",
+      "require": "./dist/cjs/src/nutation.js"
     },
     "./parabolic": {
-      "import": "./src/parabolic.js",
-      "require": "./lib/parabolic.cjs"
+      "types": "./dist/esm/src/parabolic.d.ts",
+      "import": "./dist/esm/src/parabolic.js",
+      "require": "./dist/cjs/src/parabolic.js"
     },
     "./parallactic": {
-      "import": "./src/parallactic.js",
-      "require": "./lib/parallactic.cjs"
+      "types": "./dist/esm/src/parallactic.d.ts",
+      "import": "./dist/esm/src/parallactic.js",
+      "require": "./dist/cjs/src/parallactic.js"
     },
     "./parallax": {
-      "import": "./src/parallax.js",
-      "require": "./lib/parallax.cjs"
+      "types": "./dist/esm/src/parallax.d.ts",
+      "import": "./dist/esm/src/parallax.js",
+      "require": "./dist/cjs/src/parallax.js"
     },
     "./perihelion": {
-      "import": "./src/perihelion.js",
-      "require": "./lib/perihelion.cjs"
+      "types": "./dist/esm/src/perihelion.d.ts",
+      "import": "./dist/esm/src/perihelion.js",
+      "require": "./dist/cjs/src/perihelion.js"
     },
     "./planetary": {
-      "import": "./src/planetary.js",
-      "require": "./lib/planetary.cjs"
+      "types": "./dist/esm/src/planetary.d.ts",
+      "import": "./dist/esm/src/planetary.js",
+      "require": "./dist/cjs/src/planetary.js"
     },
     "./planetelements": {
-      "import": "./src/planetelements.js",
-      "require": "./lib/planetelements.cjs"
+      "types": "./dist/esm/src/planetelements.d.ts",
+      "import": "./dist/esm/src/planetelements.js",
+      "require": "./dist/cjs/src/planetelements.js"
     },
     "./planetposition": {
-      "import": "./src/planetposition.js",
-      "require": "./lib/planetposition.cjs"
+      "types": "./dist/esm/src/planetposition.d.ts",
+      "import": "./dist/esm/src/planetposition.js",
+      "require": "./dist/cjs/src/planetposition.js"
     },
     "./pluto": {
-      "import": "./src/pluto.js",
-      "require": "./lib/pluto.cjs"
+      "types": "./dist/esm/src/pluto.d.ts",
+      "import": "./dist/esm/src/pluto.js",
+      "require": "./dist/cjs/src/pluto.js"
     },
     "./precess": {
-      "import": "./src/precess.js",
-      "require": "./lib/precess.cjs"
+      "types": "./dist/esm/src/precess.d.ts",
+      "import": "./dist/esm/src/precess.js",
+      "require": "./dist/cjs/src/precess.js"
     },
     "./refraction": {
-      "import": "./src/refraction.js",
-      "require": "./lib/refraction.cjs"
+      "types": "./dist/esm/src/refraction.d.ts",
+      "import": "./dist/esm/src/refraction.js",
+      "require": "./dist/cjs/src/refraction.js"
     },
     "./rise": {
-      "import": "./src/rise.js",
-      "require": "./lib/rise.cjs"
+      "types": "./dist/esm/src/rise.d.ts",
+      "import": "./dist/esm/src/rise.js",
+      "require": "./dist/cjs/src/rise.js"
     },
     "./saturnmoons": {
-      "import": "./src/saturnmoons.js",
-      "require": "./lib/saturnmoons.cjs"
+      "types": "./dist/esm/src/saturnmoons.d.ts",
+      "import": "./dist/esm/src/saturnmoons.js",
+      "require": "./dist/cjs/src/saturnmoons.js"
     },
     "./saturnring": {
-      "import": "./src/saturnring.js",
-      "require": "./lib/saturnring.cjs"
+      "types": "./dist/esm/src/saturnring.d.ts",
+      "import": "./dist/esm/src/saturnring.js",
+      "require": "./dist/cjs/src/saturnring.js"
     },
     "./semidiameter": {
-      "import": "./src/semidiameter.js",
-      "require": "./lib/semidiameter.cjs"
+      "types": "./dist/esm/src/semidiameter.d.ts",
+      "import": "./dist/esm/src/semidiameter.js",
+      "require": "./dist/cjs/src/semidiameter.js"
     },
     "./sexagesimal": {
-      "import": "./src/sexagesimal.js",
-      "require": "./lib/sexagesimal.cjs"
+      "types": "./dist/esm/src/sexagesimal.d.ts",
+      "import": "./dist/esm/src/sexagesimal.js",
+      "require": "./dist/cjs/src/sexagesimal.js"
     },
     "./sidereal": {
-      "import": "./src/sidereal.js",
-      "require": "./lib/sidereal.cjs"
+      "types": "./dist/esm/src/sidereal.d.ts",
+      "import": "./dist/esm/src/sidereal.js",
+      "require": "./dist/cjs/src/sidereal.js"
     },
     "./solardisk": {
-      "import": "./src/solardisk.js",
-      "require": "./lib/solardisk.cjs"
+      "types": "./dist/esm/src/solardisk.d.ts",
+      "import": "./dist/esm/src/solardisk.js",
+      "require": "./dist/cjs/src/solardisk.js"
     },
     "./solar": {
-      "import": "./src/solar.js",
-      "require": "./lib/solar.cjs"
+      "types": "./dist/esm/src/solar.d.ts",
+      "import": "./dist/esm/src/solar.js",
+      "require": "./dist/cjs/src/solar.js"
     },
     "./solarxyz": {
-      "import": "./src/solarxyz.js",
-      "require": "./lib/solarxyz.cjs"
+      "types": "./dist/esm/src/solarxyz.d.ts",
+      "import": "./dist/esm/src/solarxyz.js",
+      "require": "./dist/cjs/src/solarxyz.js"
     },
     "./solstice": {
-      "import": "./src/solstice.js",
-      "require": "./lib/solstice.cjs"
+      "types": "./dist/esm/src/solstice.d.ts",
+      "import": "./dist/esm/src/solstice.js",
+      "require": "./dist/cjs/src/solstice.js"
     },
     "./stellar": {
-      "import": "./src/stellar.js",
-      "require": "./lib/stellar.cjs"
+      "types": "./dist/esm/src/stellar.d.ts",
+      "import": "./dist/esm/src/stellar.js",
+      "require": "./dist/cjs/src/stellar.js"
     },
     "./sundial": {
-      "import": "./src/sundial.js",
-      "require": "./lib/sundial.cjs"
+      "types": "./dist/esm/src/sundial.d.ts",
+      "import": "./dist/esm/src/sundial.js",
+      "require": "./dist/cjs/src/sundial.js"
     },
     "./sunrise": {
-      "import": "./src/sunrise.js",
-      "require": "./lib/sunrise.cjs"
+      "types": "./dist/esm/src/sunrise.d.ts",
+      "import": "./dist/esm/src/sunrise.js",
+      "require": "./dist/cjs/src/sunrise.js"
     },
     "./vsop87": {
-      "import": "./src/vsop87.js",
-      "require": "./lib/vsop87.cjs"
+      "types": "./dist/esm/src/vsop87.d.ts",
+      "import": "./dist/esm/src/vsop87.js",
+      "require": "./dist/cjs/src/vsop87.js"
     },
     "./data/deltat": {
-      "import": "./data/deltat.js",
-      "require": "./lib/data/deltat.cjs"
+      "types": "./dist/esm/data/deltat.d.ts",
+      "import": "./dist/esm/data/deltat.js",
+      "require": "./dist/cjs/data/deltat.js"
     },
     "./data/elpMppDeFull": {
-      "import": "./data/elpMppDeFull.js",
-      "require": "./lib/data/elpMppDeFull.cjs"
+      "types": "./dist/esm/data/elpMppDeFull.d.ts",
+      "import": "./dist/esm/data/elpMppDeFull.js",
+      "require": "./dist/cjs/data/elpMppDeFull.js"
     },
     "./data/elpMppDe": {
-      "import": "./data/elpMppDe.js",
-      "require": "./lib/data/elpMppDe.cjs"
+      "types": "./dist/esm/data/elpMppDe.d.ts",
+      "import": "./dist/esm/data/elpMppDe.js",
+      "require": "./dist/cjs/data/elpMppDe.js"
     },
     "./data": {
-      "import": "./data/index.js",
-      "require": "./lib/data/index.cjs"
-    },
-    "./lib/data/vsop87Bearth.cjs": {
-      "require": "./lib/data/vsop87Bearth.cjs"
+      "types": "./dist/esm/data/index.d.ts",
+      "import": "./dist/esm/data/index.js",
+      "require": "./dist/cjs/data/index.js"
     },
     "./data/vsop87Bearth": {
-      "import": "./data/vsop87Bearth.js",
-      "require": "./lib/data/vsop87Bearth.cjs"
+      "types": "./dist/esm/data/vsop87Bearth.d.ts",
+      "import": "./dist/esm/data/vsop87Bearth.js",
+      "require": "./dist/cjs/data/vsop87Bearth.js"
     },
     "./data/vsop87Bjupiter": {
-      "import": "./data/vsop87Bjupiter.js",
-      "require": "./lib/data/vsop87Bjupiter.cjs"
+      "types": "./dist/esm/data/vsop87Bjupiter.d.ts",
+      "import": "./dist/esm/data/vsop87Bjupiter.js",
+      "require": "./dist/cjs/data/vsop87Bjupiter.js"
     },
     "./data/vsop87Bmars": {
-      "import": "./data/vsop87Bmars.js",
-      "require": "./lib/data/vsop87Bmars.cjs"
+      "types": "./dist/esm/data/vsop87Bmars.d.ts",
+      "import": "./dist/esm/data/vsop87Bmars.js",
+      "require": "./dist/cjs/data/vsop87Bmars.js"
     },
     "./data/vsop87Bmercury": {
-      "import": "./data/vsop87Bmercury.js",
-      "require": "./lib/data/vsop87Bmercury.cjs"
+      "types": "./dist/esm/data/vsop87Bmercury.d.ts",
+      "import": "./dist/esm/data/vsop87Bmercury.js",
+      "require": "./dist/cjs/data/vsop87Bmercury.js"
     },
     "./data/vsop87Bneptune": {
-      "import": "./data/vsop87Bneptune.js",
-      "require": "./lib/data/vsop87Bneptune.cjs"
+      "types": "./dist/esm/data/vsop87Bneptune.d.ts",
+      "import": "./dist/esm/data/vsop87Bneptune.js",
+      "require": "./dist/cjs/data/vsop87Bneptune.js"
     },
     "./data/vsop87Bsaturn": {
-      "import": "./data/vsop87Bsaturn.js",
-      "require": "./lib/data/vsop87Bsaturn.cjs"
+      "types": "./dist/esm/data/vsop87Bsaturn.d.ts",
+      "import": "./dist/esm/data/vsop87Bsaturn.js",
+      "require": "./dist/cjs/data/vsop87Bsaturn.js"
     },
     "./data/vsop87Buranus": {
-      "import": "./data/vsop87Buranus.js",
-      "require": "./lib/data/vsop87Buranus.cjs"
+      "types": "./dist/esm/data/vsop87Buranus.d.ts",
+      "import": "./dist/esm/data/vsop87Buranus.js",
+      "require": "./dist/cjs/data/vsop87Buranus.js"
     },
     "./data/vsop87Bvenus": {
-      "import": "./data/vsop87Bvenus.js",
-      "require": "./lib/data/vsop87Bvenus.cjs"
+      "types": "./dist/esm/data/vsop87Bvenus.d.ts",
+      "import": "./dist/esm/data/vsop87Bvenus.js",
+      "require": "./dist/cjs/data/vsop87Bvenus.js"
     },
     "./data/vsop87Dearth": {
-      "import": "./data/vsop87Dearth.js",
-      "require": "./lib/data/vsop87Dearth.cjs"
+      "types": "./dist/esm/data/vsop87Dearth.d.ts",
+      "import": "./dist/esm/data/vsop87Dearth.js",
+      "require": "./dist/cjs/data/vsop87Dearth.js"
     },
     "./data/vsop87Djupiter": {
-      "import": "./data/vsop87Djupiter.js",
-      "require": "./lib/data/vsop87Djupiter.cjs"
+      "types": "./dist/esm/data/vsop87Djupiter.d.ts",
+      "import": "./dist/esm/data/vsop87Djupiter.js",
+      "require": "./dist/cjs/data/vsop87Djupiter.js"
     },
     "./data/vsop87Dmars": {
-      "import": "./data/vsop87Dmars.js",
-      "require": "./lib/data/vsop87Dmars.cjs"
+      "types": "./dist/esm/data/vsop87Dmars.d.ts",
+      "import": "./dist/esm/data/vsop87Dmars.js",
+      "require": "./dist/cjs/data/vsop87Dmars.js"
     },
     "./data/vsop87Dmercury": {
-      "import": "./data/vsop87Dmercury.js",
-      "require": "./lib/data/vsop87Dmercury.cjs"
+      "types": "./dist/esm/data/vsop87Dmercury.d.ts",
+      "import": "./dist/esm/data/vsop87Dmercury.js",
+      "require": "./dist/cjs/data/vsop87Dmercury.js"
     },
     "./data/vsop87Dneptune": {
-      "import": "./data/vsop87Dneptune.js",
-      "require": "./lib/data/vsop87Dneptune.cjs"
+      "types": "./dist/esm/data/vsop87Dneptune.d.ts",
+      "import": "./dist/esm/data/vsop87Dneptune.js",
+      "require": "./dist/cjs/data/vsop87Dneptune.js"
     },
     "./data/vsop87Dsaturn": {
-      "import": "./data/vsop87Dsaturn.js",
-      "require": "./lib/data/vsop87Dsaturn.cjs"
+      "types": "./dist/esm/data/vsop87Dsaturn.d.ts",
+      "import": "./dist/esm/data/vsop87Dsaturn.js",
+      "require": "./dist/cjs/data/vsop87Dsaturn.js"
     },
     "./data/vsop87Duranus": {
-      "import": "./data/vsop87Duranus.js",
-      "require": "./lib/data/vsop87Duranus.cjs"
+      "types": "./dist/esm/data/vsop87Duranus.d.ts",
+      "import": "./dist/esm/data/vsop87Duranus.js",
+      "require": "./dist/cjs/data/vsop87Duranus.js"
     },
     "./data/vsop87Dvenus": {
-      "import": "./data/vsop87Dvenus.js",
-      "require": "./lib/data/vsop87Dvenus.cjs"
+      "types": "./dist/esm/data/vsop87Dvenus.d.ts",
+      "import": "./dist/esm/data/vsop87Dvenus.js",
+      "require": "./dist/cjs/data/vsop87Dvenus.js"
     },
     "./package.json": "./package.json"
   },
-  "main": "./lib/index.cjs",
-  "module": "./src/index.js",
+  "main": "./dist/cjs/src/index.js",
+  "module": "./dist/esm/src/index.js",
   "directories": {
-    "lib": "lib",
+    "lib": "dist",
     "doc": "docs",
     "test": "test"
   },
   "files": [
-    "data",
-    "lib",
-    "src"
+    "dist",
+    "docs",
+    "LICENSE",
+    "README.md"
   ],
   "scripts": {
-    "all": "npm-run-all clean lint build test",
-    "build": "rollup -c",
-    "ci": "npm run test:slow",
-    "clean": "rimraf lib coverage",
-    "clean:all": "rimraf node_modules && npm run clean",
-    "coverage": "c8 -r text -r html npm run test:slow",
-    "lint": "eslint --ext .js,.cjs,.mjs .",
-    "prepublishOnly": "npm run all",
-    "test": "mocha",
-    "test:slow": "SLOWTESTS=1 mocha",
-    "zuul": "zuul test/*.js"
+    "clean": "rimraf dist coverage",
+    "typecheck": "tsc -p tsconfig.json",
+    "check:no-js": "if find . -type f \\( -name '*.js' -o -name '*.mjs' -o -name '*.cjs' \\) -not -path './node_modules/*' -not -path './dist/*' | grep -q .; then echo 'JavaScript source files remain' >&2; exit 1; fi",
+    "lint": "npm run typecheck && npm run check:no-js",
+    "build:esm": "tsc -p tsconfig.build.esm.json",
+    "build:cjs": "tsc -p tsconfig.build.cjs.json && printf '{\"type\":\"commonjs\"}\\n' > dist/cjs/package.json",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "test": "node --import tsx ./node_modules/mocha/bin/mocha.js \"test/**/*.test.ts\"",
+    "test:slow": "SLOWTESTS=1 npm test",
+    "coverage": "c8 -r text -r html npm test",
+    "ci": "npm run lint && npm run build && npm run test:slow",
+    "prepublishOnly": "npm run ci"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.3",
-    "babelify": "^10.0.0",
     "c8": "^10.1.3",
-    "core-js": "^3.45.1",
-    "eslint": "^8.57.1",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-n": "^16.6.2",
-    "eslint-plugin-promise": "^6.6.0",
     "mocha": "^11.7.1",
-    "npm-run-all": "^4.1.5",
-    "regenerator-runtime": "^0.14.1",
     "rimraf": "^6.0.1",
-    "rollup": "^2.79.2",
     "serialize-to-js": "^3.1.2",
     "serialize-to-module": "^1.1.0",
+    "tsx": "^4.20.5",
     "typescript": "^5.9.2"
   },
   "engines": {
-    "node": ">=12.0.0"
-  }
+    "node": ">=20.0.0"
+  },
+  "types": "./dist/esm/src/index.d.ts"
 }
