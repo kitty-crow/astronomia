@@ -1,54 +1,52 @@
-name: Validate dependency cleanup
+# Validate the strict TypeScript source, generated declarations, package builds and tests.
+
+name: CI
 
 on:
+  push:
+    branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Tag or commit SHA to check out
+        required: false
 
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CI: "true"
+
 jobs:
-  clean:
+  build:
     runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        node: [22, 24]
+    name: Node ${{ matrix.node }}
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - name: Check out repository
+        uses: actions/checkout@v6
         with:
-          node-version: 24
-      - name: Generate cleaned manifest
-        run: |
-          node <<'NODE'
-          const fs = require('node:fs')
-          const file = 'package.json'
-          const pkg = JSON.parse(fs.readFileSync(file, 'utf8'))
-          delete pkg.devDependencies.c8
-          delete pkg.devDependencies['serialize-to-js']
-          delete pkg.devDependencies['serialize-to-module']
-          pkg.scripts.coverage = 'rm -rf coverage && NODE_V8_COVERAGE=coverage node --import tsx ./node_modules/mocha/bin/mocha.js "test/**/*.test.ts"'
-          pkg.scripts.audit = 'npm audit --audit-level=low'
-          pkg.overrides = {
-            diff: '8.0.3',
-            glob: '13.0.6',
-            'serialize-javascript': '7.0.5'
-          }
-          fs.writeFileSync(file, `${JSON.stringify(pkg, null, 2)}\n`)
-          NODE
+          ref: ${{ github.event.inputs.ref || github.ref }}
+      - name: Set up Node ${{ matrix.node }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
       - name: Install without deprecation warnings
         run: |
           set -o pipefail
           npm install --ignore-scripts 2>&1 | tee dependency-install.log
           ! grep -E 'npm warn deprecated|DeprecationWarning' dependency-install.log
-      - name: Audit
+      - name: Audit dependencies
         run: npm run audit
       - name: Validate
         env:
           NODE_OPTIONS: --throw-deprecation
         run: npm run ci
-      - name: Save validated dependency files
-        uses: actions/upload-artifact@v5
-        with:
-          name: dependency-cleanup
-          path: |
-            package.json
-            package-lock.json
-            dependency-install.log
