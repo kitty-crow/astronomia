@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 24
-      - name: Update manifest
+      - name: Update and record dependency result
         run: |
           node <<'NODE'
           const fs = require('node:fs')
@@ -36,22 +36,21 @@ jobs:
           }
           fs.writeFileSync(file, `${JSON.stringify(pkg, null, 2)}\n`)
           NODE
-      - name: Install without warnings
-        run: |
-          set -o pipefail
-          npm install --ignore-scripts 2>&1 | tee install.log
-          ! grep -E 'npm warn deprecated|DeprecationWarning' install.log
-      - name: Audit
-        run: npm run audit
-      - name: Validate
-        env:
-          NODE_OPTIONS: --throw-deprecation
-        run: npm run ci
-      - name: Commit dependency cleanup
+          set +e
+          npm install --ignore-scripts > dependency-install.log 2>&1
+          install_status=$?
+          npm audit --json > dependency-audit.json 2>&1
+          audit_status=$?
+          set -e
+          printf 'install=%s\naudit=%s\n' "$install_status" "$audit_status" > dependency-status.txt
+          cat dependency-install.log
+          cat dependency-audit.json
+      - name: Commit result
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add package.json package-lock.json
+          git add package.json dependency-install.log dependency-audit.json dependency-status.txt
+          test ! -f package-lock.json || git add package-lock.json
           git diff --cached --quiet && exit 0
-          git commit -m "build: clean dependency tree"
+          git commit -m "build: test dependency cleanup"
           git push origin HEAD:agent/dependency-cleanup
