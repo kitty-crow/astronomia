@@ -4,9 +4,9 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
     inputs:
       ref:
@@ -25,21 +25,28 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
-        node: [ 22, 24 ]
+        node: [22, 24]
     name: Node ${{ matrix.node }}
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.event.inputs.ref || github.ref }}
       - name: Set up Node ${{ matrix.node }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
-      - name: Install dependencies
-        run: npm install --ignore-scripts
+      - name: Install without deprecation warnings
+        run: |
+          set -o pipefail
+          npm install --ignore-scripts 2>&1 | tee dependency-install.log
+          ! grep -E 'npm warn deprecated|DeprecationWarning' dependency-install.log
+      - name: Audit dependencies
+        run: npm run audit
       - name: Validate
+        env:
+          NODE_OPTIONS: --throw-deprecation
         run: npm run ci
